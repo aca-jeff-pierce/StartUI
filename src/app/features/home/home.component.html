@@ -1,0 +1,65 @@
+<div class="home-page">
+
+  <!-- Greeting -->
+  <div class="home-greeting">
+    <h1 class="greeting-title">Good morning, {{ auth.currentUser()?.name }}</h1>
+    <p class="greeting-sub">{{ today }} — Your active queues across all sections</p>
+  </div>
+
+  <!-- Section Tiles Grid -->
+  <section aria-label="Section summaries">
+    <div class="tiles-grid">
+      @for (section of sections; track section.route) {
+        <div class="section-tile">
+
+          <!-- Tile header -->
+          <div class="tile-header">
+            <span class="tile-icon" aria-hidden="true">{{ section.icon }}</span>
+            <span class="tile-label">{{ section.label }}</span>
+            <span
+              class="health-dot"
+              [style.background-color]="healthColor(section.health)"
+              [attr.aria-label]="section.health + ' health status'"
+            ></span>
+          </div>
+
+          <!-- Metrics -->
+          <div class="tile-metrics">
+            <div class="metric">
+              <p class="metric-value">{{ section.metric1Value }}</p>
+              <p class="metric-label">{{ section.metric1Label }}</p>
+            </div>
+            <div class="metric">
+              <p class="metric-value" [style.color]="healthColor(section.health)">{{ section.metric2Value }}</p>
+              <p class="metric-label">{{ section.metric2Label }}</p>
+            </div>
+          </div>
+
+          <!-- Link -->
+          <a [routerLink]="section.route" class="tile-link">Open Section →</a>
+
+        </div>
+      }
+    </div>
+  </section>
+
+  <!-- Activity Feed -->
+  <section class="activity-feed" aria-label="Recent activity">
+    <h2 class="feed-title">Recent Activity</h2>
+    <div class="feed-list">
+      @for (entry of feed.entries(); track entry.id) {
+        <div class="feed-item">
+          <span class="feed-dot" aria-hidden="true"></span>
+          <div class="feed-body">
+            <span class="feed-action">{{ entry.action }} — </span>
+            <span class="feed-account">{{ entry.accountNumber }}</span>
+          </div>
+          <time class="feed-time" [attr.datetime]="entry.timestamp.toISOString()">
+            {{ relativeTime(entry.timestamp) }}
+          </time>
+        </div>
+      }
+    </div>
+  </section>
+
+</div>

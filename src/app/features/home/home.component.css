@@ -1,0 +1,166 @@
+.home-page {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  max-width: 1200px;
+}
+
+/* Greeting */
+.home-greeting {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.greeting-title {
+  font-size: 20px;
+  font-weight: 600;
+  color: #ffffff;
+}
+
+.greeting-sub {
+  font-size: 14px;
+  color: #8B9CB6;
+}
+
+/* Section tiles grid */
+.tiles-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 16px;
+}
+
+.section-tile {
+  background-color: #162040;
+  border: 1px solid #1e3060;
+  border-radius: 12px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  transition: border-color 0.15s;
+}
+
+.section-tile:hover {
+  border-color: rgba(245, 166, 35, 0.3);
+}
+
+.tile-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.tile-icon {
+  font-size: 18px;
+}
+
+.tile-label {
+  font-weight: 600;
+  font-size: 14px;
+  color: #ffffff;
+  flex: 1;
+}
+
+.health-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.tile-metrics {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.metric-value {
+  font-size: 28px;
+  font-weight: 700;
+  color: #ffffff;
+  line-height: 1.1;
+}
+
+.metric-label {
+  font-size: 12px;
+  color: #8B9CB6;
+  margin-top: 2px;
+}
+
+.tile-link {
+  font-size: 13px;
+  font-weight: 500;
+  color: #F5A623;
+  text-decoration: none;
+  transition: opacity 0.15s;
+}
+
+.tile-link:hover {
+  opacity: 0.8;
+}
+
+.tile-link:focus-visible {
+  outline: 2px solid #F5A623;
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* Activity feed */
+.activity-feed {
+  background-color: #162040;
+  border: 1px solid #1e3060;
+  border-radius: 12px;
+  padding: 20px;
+}
+
+.feed-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: #ffffff;
+  margin-bottom: 16px;
+}
+
+.feed-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.feed-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  font-size: 14px;
+}
+
+.feed-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: #F5A623;
+  margin-top: 6px;
+  flex-shrink: 0;
+}
+
+.feed-body {
+  flex: 1;
+  min-width: 0;
+}
+
+.feed-action {
+  color: #8B9CB6;
+}
+
+.feed-account {
+  color: #ffffff;
+  font-weight: 500;
+}
+
+.feed-time {
+  font-size: 12px;
+  color: #8B9CB6;
+  flex-shrink: 0;
+  white-space: nowrap;
+}
