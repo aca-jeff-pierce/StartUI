@@ -179,6 +179,18 @@
   outline-offset: 2px;
 }
 
+/* --- Detail field groups --- */
+.panel-group-label {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #8B9CB6;
+  padding-bottom: 8px;
+  border-bottom: 1px solid #1e3060;
+  margin: 0;
+}
+
 /* --- Detail fields --- */
 .panel-fields {
   display: flex;
