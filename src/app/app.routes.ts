@@ -15,6 +15,7 @@ export const APP_ROUTES: Routes = [
     children: [
       {
         path: '',
+        pathMatch: 'full',
         loadComponent: () =>
           import('./features/home/home.component').then(m => m.HomeComponent),
       },

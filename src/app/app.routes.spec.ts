@@ -1,4 +1,5 @@
 import { APP_ROUTES } from './app.routes';
+import { authGuard } from './core/auth/auth.guard';
 
 describe('app routes', () => {
   it('should define a login route', () => {
@@ -10,5 +11,6 @@ describe('app routes', () => {
     const shellRoute = APP_ROUTES.find(r => r.path === '');
     expect(shellRoute).toBeDefined();
     expect(shellRoute?.children?.length).toBe(7); // home + 6 sections
+    expect(shellRoute?.canActivate).toContain(authGuard);
   });
 });
