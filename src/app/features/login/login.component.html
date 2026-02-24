@@ -1,0 +1,50 @@
+<div class="min-h-screen flex items-center justify-center login-bg">
+  <div class="w-full max-w-md rounded-2xl p-8 shadow-2xl login-card">
+
+    <!-- Header -->
+    <div class="mb-8 text-center">
+      <div class="w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-4 font-bold text-xl aca-badge">
+        ACA
+      </div>
+      <h1 class="text-2xl font-bold text-white">Agent Portal</h1>
+      <p class="mt-1 text-sm text-muted">American Credit Acceptance</p>
+    </div>
+
+    <!-- Form -->
+    <form (ngSubmit)="signIn()" class="space-y-5">
+      <div>
+        <label for="username" class="block text-sm font-medium mb-1.5 text-muted">Username</label>
+        <input
+          id="username"
+          type="text"
+          [ngModel]="username()"
+          (ngModelChange)="username.set($event)"
+          name="username"
+          class="login-input w-full rounded-lg px-4 py-2.5 text-white text-sm"
+          placeholder="Enter your username"
+          autocomplete="username"
+        />
+      </div>
+
+      <div>
+        <label for="password" class="block text-sm font-medium mb-1.5 text-muted">Password</label>
+        <input
+          id="password"
+          type="password"
+          [ngModel]="password()"
+          (ngModelChange)="password.set($event)"
+          name="password"
+          class="login-input w-full rounded-lg px-4 py-2.5 text-white text-sm"
+          placeholder="Enter your password"
+          autocomplete="current-password"
+        />
+      </div>
+
+      <button type="submit" class="login-btn w-full rounded-lg py-2.5 text-sm font-semibold mt-2">
+        Sign In
+      </button>
+    </form>
+
+    <p class="text-center text-xs text-muted mt-6">Internal use only. Authorized personnel only.</p>
+  </div>
+</div>

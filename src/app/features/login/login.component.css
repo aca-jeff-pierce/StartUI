@@ -1,0 +1,38 @@
+.login-bg {
+  background-color: #0A1628;
+}
+
+.login-card {
+  background-color: #0F1F3D;
+  border: 1px solid #1e3060;
+}
+
+.aca-badge {
+  background-color: #F5A623;
+  color: #0A1628;
+}
+
+.text-muted {
+  color: #8B9CB6;
+}
+
+.login-input {
+  background-color: #162040;
+  border: 1px solid #1e3060;
+  outline: none;
+  transition: border-color 0.15s;
+}
+
+.login-input:focus {
+  border-color: #F5A623;
+}
+
+.login-btn {
+  background-color: #F5A623;
+  color: #0A1628;
+  transition: opacity 0.15s;
+}
+
+.login-btn:hover {
+  opacity: 0.9;
+}
