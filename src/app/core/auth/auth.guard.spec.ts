@@ -30,6 +30,6 @@ describe('authGuard', () => {
     const result = TestBed.runInInjectionContext(() =>
       authGuard({} as ActivatedRouteSnapshot, {} as RouterStateSnapshot)
     );
-    expect(result).not.toBe(true);
+    expect(result).toEqual(['/login']);
   });
 });
