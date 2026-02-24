@@ -1,0 +1,112 @@
+<div class="section-layout">
+
+  <!-- Main area -->
+  <div class="section-main">
+
+    <!-- Header -->
+    <div class="section-header">
+      <h1 class="section-title"><span aria-hidden="true">📋</span> ANT</h1>
+    </div>
+
+    <!-- Stats row -->
+    <div class="stats-row">
+      <app-stat-card label="Pending"  [value]="stats().pending"  accentColor="#F59E0B" />
+      <app-stat-card label="Approved" [value]="stats().approved" accentColor="#22C55E" />
+      <app-stat-card label="Denied"   [value]="stats().denied"   accentColor="#EF4444" />
+      <app-stat-card label="Expired"  [value]="stats().expired"  accentColor="#8B9CB6" />
+    </div>
+
+    <!-- Filter chips -->
+    <div class="filter-chips" role="group" aria-label="Filter queue">
+      @for (chip of chips; track chip) {
+        <button
+          class="chip"
+          [class.chip-active]="activeFilter() === chip"
+          (click)="activeFilter.set(chip)"
+          [attr.aria-pressed]="activeFilter() === chip"
+        >{{ chip }}</button>
+      }
+    </div>
+
+    <!-- Data table -->
+    <div class="table-wrapper" role="region" aria-label="ANT queue">
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th scope="col">Account #</th>
+            <th scope="col">Customer</th>
+            <th scope="col">Type</th>
+            <th scope="col">Status</th>
+            <th scope="col">Request Date</th>
+            <th scope="col">Assigned</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (item of filteredRequests(); track item.id) {
+            <tr
+              class="table-row"
+              [class.row-selected]="selectedRecord()?.id === item.id"
+              (click)="selectRecord(item)"
+              [attr.aria-selected]="selectedRecord()?.id === item.id"
+              tabindex="0"
+              (keydown.enter)="selectRecord(item)"
+              (keydown.space)="selectRecord(item)"
+            >
+              <td class="td-mono">{{ item.accountNumber }}</td>
+              <td>{{ item.customerName }}</td>
+              <td class="td-muted">{{ item.requestType }}</td>
+              <td><app-status-badge [status]="item.status" /></td>
+              <td class="td-muted">{{ item.requestDate }}</td>
+              <td class="td-muted">{{ item.assignedTo }}</td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+
+  <!-- Detail panel -->
+  @if (selectedRecord(); as record) {
+    <aside class="detail-panel" aria-label="Record detail">
+      <div class="panel-header">
+        <h2 class="panel-title">Record Detail</h2>
+        <button class="panel-close" (click)="closePanel()" aria-label="Close detail panel">×</button>
+      </div>
+
+      <dl class="panel-fields">
+        <div class="field">
+          <dt>Account Number</dt>
+          <dd class="dd-mono">{{ record.accountNumber }}</dd>
+        </div>
+        <div class="field">
+          <dt>Customer</dt>
+          <dd>{{ record.customerName }}</dd>
+        </div>
+        <div class="field">
+          <dt>Request Type</dt>
+          <dd>{{ record.requestType }}</dd>
+        </div>
+        <div class="field">
+          <dt>Status</dt>
+          <dd><app-status-badge [status]="record.status" /></dd>
+        </div>
+        <div class="field">
+          <dt>Request Date</dt>
+          <dd>{{ record.requestDate }}</dd>
+        </div>
+        <div class="field">
+          <dt>Assigned To</dt>
+          <dd>{{ record.assignedTo }}</dd>
+        </div>
+      </dl>
+
+      <div class="panel-actions">
+        <button class="btn-success" (click)="approve(record)">Approve</button>
+        <button class="btn-danger"  (click)="deny(record)">Deny</button>
+        <button class="btn-neutral">Request Docs</button>
+      </div>
+    </aside>
+  }
+
+</div>

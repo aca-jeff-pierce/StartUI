@@ -1,0 +1,118 @@
+<div class="section-layout">
+
+  <!-- Main area -->
+  <div class="section-main">
+
+    <!-- Header -->
+    <div class="section-header">
+      <h1 class="section-title"><span aria-hidden="true">🤝</span> Settlements</h1>
+    </div>
+
+    <!-- Stats row -->
+    <div class="stats-row">
+      <app-stat-card label="Offers Out"     [value]="stats().offersOut"     accentColor="#3B82F6" />
+      <app-stat-card label="Counter Offers" [value]="stats().counterOffers" accentColor="#F59E0B" />
+      <app-stat-card label="Accepted"       [value]="stats().accepted"      accentColor="#22C55E" />
+      <app-stat-card label="Expired"        [value]="stats().expired"       accentColor="#EF4444" />
+    </div>
+
+    <!-- Filter chips -->
+    <div class="filter-chips" role="group" aria-label="Filter queue">
+      @for (chip of chips; track chip) {
+        <button
+          class="chip"
+          [class.chip-active]="activeFilter() === chip"
+          (click)="activeFilter.set(chip)"
+          [attr.aria-pressed]="activeFilter() === chip"
+        >{{ chip }}</button>
+      }
+    </div>
+
+    <!-- Data table -->
+    <div class="table-wrapper" role="region" aria-label="Settlements queue">
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th scope="col">Account #</th>
+            <th scope="col">Customer</th>
+            <th scope="col">Offer Amount</th>
+            <th scope="col">Balance Owed</th>
+            <th scope="col">Status</th>
+            <th scope="col">Expiration</th>
+            <th scope="col">Assigned</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (item of filteredSettlements(); track item.id) {
+            <tr
+              class="table-row"
+              [class.row-selected]="selectedRecord()?.id === item.id"
+              (click)="selectRecord(item)"
+              [attr.aria-selected]="selectedRecord()?.id === item.id"
+              tabindex="0"
+              (keydown.enter)="selectRecord(item)"
+              (keydown.space)="selectRecord(item)"
+            >
+              <td class="td-mono">{{ item.accountNumber }}</td>
+              <td>{{ item.customerName }}</td>
+              <td>${{ item.offerAmount | number:'1.2-2' }}</td>
+              <td>${{ item.balanceOwed | number:'1.2-2' }}</td>
+              <td><app-status-badge [status]="item.status" /></td>
+              <td class="td-muted">{{ item.expirationDate }}</td>
+              <td class="td-muted">{{ item.assignedTo }}</td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+
+  <!-- Detail panel -->
+  @if (selectedRecord(); as record) {
+    <aside class="detail-panel" aria-label="Record detail">
+      <div class="panel-header">
+        <h2 class="panel-title">Record Detail</h2>
+        <button class="panel-close" (click)="closePanel()" aria-label="Close detail panel">×</button>
+      </div>
+
+      <dl class="panel-fields">
+        <div class="field">
+          <dt>Account Number</dt>
+          <dd class="dd-mono">{{ record.accountNumber }}</dd>
+        </div>
+        <div class="field">
+          <dt>Customer</dt>
+          <dd>{{ record.customerName }}</dd>
+        </div>
+        <div class="field">
+          <dt>Status</dt>
+          <dd><app-status-badge [status]="record.status" /></dd>
+        </div>
+        <div class="field">
+          <dt>Offer Amount</dt>
+          <dd>${{ record.offerAmount | number:'1.2-2' }}</dd>
+        </div>
+        <div class="field">
+          <dt>Balance Owed</dt>
+          <dd>${{ record.balanceOwed | number:'1.2-2' }}</dd>
+        </div>
+        <div class="field">
+          <dt>Expiration Date</dt>
+          <dd>{{ record.expirationDate }}</dd>
+        </div>
+        <div class="field">
+          <dt>Assigned To</dt>
+          <dd>{{ record.assignedTo }}</dd>
+        </div>
+      </dl>
+
+      <div class="panel-actions">
+        <button class="btn-success" (click)="accept(record)">Accept Offer</button>
+        <button class="btn-danger"  (click)="void_(record)">Void</button>
+        <button class="btn-neutral" (click)="counterOffer(record)">Counter Offer</button>
+      </div>
+    </aside>
+  }
+
+</div>
