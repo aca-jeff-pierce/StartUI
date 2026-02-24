@@ -1,15 +1,15 @@
 import type { Config } from 'jest';
 
 const config: Config = {
-  preset: 'ts-jest',
   testEnvironment: 'jsdom',
   setupFilesAfterEnv: ['<rootDir>/src/test-setup.ts'],
-  globals: {
-    'ts-jest': {
-      tsconfig: '<rootDir>/tsconfig.spec.json',
-    },
+  transform: {
+    '^.+\\.(ts|mjs|js|html)$': [
+      'ts-jest',
+      { tsconfig: '<rootDir>/tsconfig.spec.json' },
+    ],
   },
-  transformIgnorePatterns: ['node_modules/(?!@angular)'],
+  transformIgnorePatterns: ['node_modules/(?!(@angular|@testing-library/angular))'],
   moduleFileExtensions: ['ts', 'mjs', 'js', 'html', 'json'],
   moduleNameMapper: {
     '^src/(.*)$': '<rootDir>/src/$1',
