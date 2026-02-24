@@ -1,0 +1,8 @@
+<div class="stat-card">
+  <span class="stat-label">{{ label() }}</span>
+  <span class="stat-value">{{ value() }}</span>
+  @if (sublabel()) {
+    <span class="stat-sublabel">{{ sublabel() }}</span>
+  }
+  <div class="stat-accent" [style.background-color]="accentColor()"></div>
+</div>

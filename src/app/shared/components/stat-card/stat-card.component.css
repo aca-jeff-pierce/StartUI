@@ -1,0 +1,36 @@
+.stat-card {
+  background-color: #162040;
+  border: 1px solid #1e3060;
+  border-radius: 12px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.stat-label {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #8B9CB6;
+}
+
+.stat-value {
+  font-size: 30px;
+  font-weight: 700;
+  color: #ffffff;
+  line-height: 1.1;
+}
+
+.stat-sublabel {
+  font-size: 12px;
+  color: #8B9CB6;
+}
+
+.stat-accent {
+  margin-top: 8px;
+  height: 3px;
+  width: 32px;
+  border-radius: 2px;
+}
