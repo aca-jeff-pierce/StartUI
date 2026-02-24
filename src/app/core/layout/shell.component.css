@@ -71,6 +71,11 @@
   background-color: rgba(255, 255, 255, 0.05);
 }
 
+.collapse-btn:focus-visible {
+  outline: 2px solid #F5A623;
+  outline-offset: 2px;
+}
+
 /* User info */
 .sidebar-user {
   display: flex;
@@ -236,21 +241,6 @@
   outline-offset: 2px;
 }
 
-.notification-badge {
-  position: absolute;
-  top: -4px;
-  right: -4px;
-  width: 16px;
-  height: 16px;
-  border-radius: 50%;
-  background-color: #F5A623;
-  color: #0A1628;
-  font-size: 10px;
-  font-weight: 700;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
 
 .header-avatar {
   width: 32px;
@@ -269,4 +259,10 @@
 .shell-content {
   flex: 1;
   overflow: auto;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .shell-sidebar {
+    transition: none;
+  }
 }

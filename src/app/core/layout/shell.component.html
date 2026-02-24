@@ -51,7 +51,7 @@
 
     <!-- Bottom actions -->
     <div class="sidebar-footer">
-      <button class="nav-link sign-out-btn" (click)="signOut()">
+      <button class="nav-link sign-out-btn" (click)="signOut()" aria-label="Sign Out" [attr.title]="sidebarCollapsed() ? 'Sign Out' : null">
         <span class="nav-icon" aria-hidden="true">🚪</span>
         @if (!sidebarCollapsed()) {
           <span class="nav-label">Sign Out</span>
@@ -68,9 +68,8 @@
     <header class="shell-header">
       <h1 class="header-title">American Credit Acceptance</h1>
       <div class="header-actions">
-        <button class="notification-btn" aria-label="Notifications (3 unread)">
+        <button class="notification-btn" aria-label="Notifications">
           <span aria-hidden="true">🔔</span>
-          <span class="notification-badge" aria-hidden="true">3</span>
         </button>
         @if (currentUser(); as user) {
           <div class="header-avatar" aria-hidden="true">{{ user.initials }}</div>
