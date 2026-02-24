@@ -19,12 +19,14 @@
 .login-input {
   background-color: #162040;
   border: 1px solid #1e3060;
-  outline: none;
-  transition: border-color 0.15s;
+  outline: 2px solid transparent;
+  transition: border-color 0.15s, outline-color 0.15s;
 }
 
-.login-input:focus {
+.login-input:focus-visible {
   border-color: #F5A623;
+  outline: 2px solid rgba(245, 166, 35, 0.4);
+  outline-offset: 2px;
 }
 
 .login-btn {
@@ -35,4 +37,9 @@
 
 .login-btn:hover {
   opacity: 0.9;
+}
+
+.login-btn:focus-visible {
+  outline: 2px solid #F5A623;
+  outline-offset: 2px;
 }

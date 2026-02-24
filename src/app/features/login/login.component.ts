@@ -16,11 +16,16 @@ export class LoginComponent {
 
   protected readonly username = signal('');
   protected readonly password = signal('');
+  // TODO: Replace with real auth API error handling when Azure AD SSO is integrated
+  protected readonly errorMessage = signal('');
+  protected readonly isLoading = signal(false);
 
   protected signIn(): void {
-    if (this.username().trim()) {
-      this.auth.login(this.username(), this.password());
-      this.router.navigate(['/']);
+    if (!this.username().trim() || !this.password().trim()) {
+      return;
     }
+    // TODO: Replace with real auth API call
+    this.auth.login(this.username(), this.password());
+    this.router.navigate(['/']);
   }
 }
