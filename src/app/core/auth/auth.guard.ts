@@ -1,4 +1,9 @@
-import { CanActivateFn } from '@angular/router';
+import { inject } from '@angular/core';
+import { CanActivateFn, Router } from '@angular/router';
+import { AuthService } from './auth.service';
 
-// TODO: Replace with real AuthService-based guard in Task 3
-export const authGuard: CanActivateFn = () => true;
+export const authGuard: CanActivateFn = () => {
+  const auth = inject(AuthService);
+  const router = inject(Router);
+  return auth.isAuthenticated() ? true : router.createUrlTree(['/login']);
+};
