@@ -30,7 +30,7 @@ export class ActivityFeedService {
   readonly entries = this._entries.asReadonly();
 
   addEntry(partial: Pick<ActivityEntry, 'section' | 'action' | 'accountNumber'>): void {
-    this._entries.update(prev =>
+    this._entries.update((prev) =>
       [
         {
           id: crypto.randomUUID(),
@@ -38,7 +38,7 @@ export class ActivityFeedService {
           timestamp: new Date(),
         },
         ...prev,
-      ].slice(0, 50)
+      ].slice(0, 50),
     );
   }
 }
