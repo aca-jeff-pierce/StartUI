@@ -74,6 +74,7 @@
         <button class="panel-close" (click)="closePanel()" aria-label="Close detail panel">×</button>
       </div>
 
+      <h3 class="panel-group-label">Policy Information</h3>
       <dl class="panel-fields">
         <div class="field">
           <dt>Account Number</dt>
@@ -84,12 +85,32 @@
           <dd>{{ record.customerName }}</dd>
         </div>
         <div class="field">
+          <dt>Policy Type</dt>
+          <dd>{{ record.policyType }}</dd>
+        </div>
+        <div class="field">
+          <dt>Agent Name</dt>
+          <dd>{{ record.agentName }}</dd>
+        </div>
+      </dl>
+
+      <h3 class="panel-group-label">Reinstatement Details</h3>
+      <dl class="panel-fields">
+        <div class="field">
           <dt>Status</dt>
           <dd><app-status-badge [status]="record.status" /></dd>
         </div>
         <div class="field">
           <dt>Quote Amount</dt>
           <dd>${{ record.quoteAmount | number:'1.2-2' }}</dd>
+        </div>
+        <div class="field">
+          <dt>Request Date</dt>
+          <dd>{{ record.requestDate }}</dd>
+        </div>
+        <div class="field">
+          <dt>Lapse Date</dt>
+          <dd>{{ record.lapseDate }}</dd>
         </div>
         <div class="field">
           <dt>Due Date</dt>
